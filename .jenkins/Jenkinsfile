@@ -2,22 +2,22 @@ pipeline {
     agent any
     
     stages {
+        stage('Install Poetry for package management') {
+            steps {
+                echo 'Installing Poetry'
+                // Install Poetry
+                sh 'curl -sSL https://install.python-poetry.org | python3 -'
+            }
+        
+        }
+
         stage('Build') {
             steps {
-                echo 'Build stage'
                 echo 'Using Poetry to install dependencies'
                 // Build your FastAPI application
                 // im using pyproject.toml
                 sh 'poetry install'
             }
         }
-        
-        // stage('Deploy') {
-        //     steps {
-        //         // Deploy your FastAPI application
-        //         sh 'docker build -t my-fastapi-app .'
-        //         sh 'docker run -d -p 8000:8000 my-fastapi-app'
-        //     }
-        // }
     }
 }
