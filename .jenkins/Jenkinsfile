@@ -8,6 +8,7 @@ pipeline {
                 // echo the current working directory
                 sh 'pwd'
                 // install deps using Poetry
+                sh 'pip --version'
                 sh 'poetry install'
                 echo 'Poetry installed successfully'
             }
