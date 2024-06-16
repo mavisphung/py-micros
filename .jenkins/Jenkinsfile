@@ -5,10 +5,11 @@ pipeline {
         stage('Install Poetry for package management') {
             steps {
                 echo 'Installing Poetry'
-                // Install Poetry
-                sh 'sudo apt-get update && sudo apt-get install -y curl'
-                sh "curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python"
-                sh "$HOME/.poetry/bin/poetry install --no-root"
+                // echo the current working directory
+                sh 'pwd'
+                // install deps using Poetry
+                sh 'poetry install'
+                echo 'Poetry installed successfully'
             }
         
         }
