@@ -16,4 +16,4 @@ def read_item(item_id: int, q: Union[str, None] = None):
 
 @app.get("/health-check")
 def do_health_check():
-    return {"status": "ok"}
+    return {"location-service-status": "ok"}
