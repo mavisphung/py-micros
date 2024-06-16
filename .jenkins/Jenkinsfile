@@ -2,15 +2,6 @@ pipeline {
     agent any
     
     stages {
-        stage('Checkout') {
-            steps {
-                echo 'Checking out code from version control...'
-                // Checkout your code from version control
-                // Replace the URL and credentials with your own
-                git 'https://github.com/mavisphung/py-micros.git'
-            }
-        }
-        
         stage('Build') {
             steps {
                 echo 'Build stage'
