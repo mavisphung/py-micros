@@ -14,3 +14,6 @@ def read_root():
 def read_item(item_id: int, q: Union[str, None] = None):
     return {"item_id": item_id, "q": q}
 
+@app.get("/health-check")
+def do_health_check():
+    return {"status": "ok"}
