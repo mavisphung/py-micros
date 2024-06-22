@@ -5,11 +5,7 @@ pipeline {
         stage('Install Poetry for package management') {
             steps {
                 echo 'Installing Poetry'
-                // echo the current working directory
-                sh 'pwd'
-                // install deps using Poetry
-                sh 'pip --version'
-                sh 'poetry install'
+                sh 'pip install --no-cache-dir poetry'
                 echo 'Poetry installed successfully'
             }
         
@@ -20,7 +16,7 @@ pipeline {
                 echo 'Using Poetry to install dependencies'
                 // Build your FastAPI application
                 // im using pyproject.toml
-                sh 'poetry install'
+                // sh 'poetry install'
             }
         }
     }
