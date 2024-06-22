@@ -1,5 +1,9 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'python:slim-bullseye'
+        }
+    }
     
     stages {
         stage('Install Poetry for package management') {
