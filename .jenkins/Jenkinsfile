@@ -9,7 +9,9 @@ pipeline {
         stage('Install Poetry for package management') {
             steps {
                 echo 'Installing Poetry'
-                sh 'pip install --no-cache-dir poetry'
+                // sh 'chown -R jenkins /var/lib/jenkins/workspace'
+                // sh 'pip3 install --no-cache-dir --user poetry'
+                echo '$USER'
                 echo 'Poetry installed successfully'
             }
         
