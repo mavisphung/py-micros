@@ -9,7 +9,7 @@ pipeline {
         stage('Install Poetry for package management') {
             steps {
                 echo 'Checking if /.local exists'
-                sh '[ ! -d "/.local" ] && mkdir -p "/.local'
+                sh '[ ! -d "/.local" ] && mkdir -p /.local'
                 echo 'Changing ownership of /.local'
                 sh 'chown 1000:1000 /.local'
                 echo 'Installing Poetry'
