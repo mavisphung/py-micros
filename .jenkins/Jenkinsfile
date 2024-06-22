@@ -9,7 +9,7 @@ pipeline {
         stage('Install Poetry for package management') {
             steps {
                 echo 'Installing Poetry'
-                sh 'pip install --no-cache-dir poetry'
+                sh 'pip3 install --no-cache-dir --user poetry'
                 echo 'Poetry installed successfully'
             }
         
