@@ -11,7 +11,7 @@ pipeline {
                 echo 'Installing Poetry'
                 // sh 'chown -R jenkins /var/lib/jenkins/workspace'
                 // sh 'pip3 install --no-cache-dir --user poetry'
-                echo '$USER'
+                echo '${USER}'
                 echo 'Poetry installed successfully'
             }
         
