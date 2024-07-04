@@ -1,25 +1,34 @@
 services:
-  python-api:
-    build: .
-    ports:
-      - 9000:9000
+  python-book-api:
+    build:
+      context: .
+      dockerfile: book.Dockerfile
+    environment:
+      - env=dev
+    networks:
+      - devops
+  python-location-api:
+    build:
+      context: .
+      dockerfile: location.Dockerfile
     environment:
       - env=dev
     networks:
       - devops
 
-  # nginx:
-  #   build: ./nginx
-  #   # volumes:
-  #     # static
-  #     # - ./html5up-stellar/:/var/www/html
-  #   ports:
-  #     - 9000:80
-  #     - 9443:443
-  #   networks:
-  #     - devops
-  #   depends_on:
-  #     - python-api
+  nginx:
+    build: ./nginx
+    # volumes:
+      # static
+      # - ./html5up-stellar/:/var/www/html
+    ports:
+      - 9000:80
+      - 9443:443
+    networks:
+      - devops
+    depends_on:
+      - python-book-api
+      - python-location-api
     
 networks:
   devops:

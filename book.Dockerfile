@@ -1,6 +1,9 @@
 # For more information, please refer to https://aka.ms/vscode-docker-python
 FROM python:slim-bullseye as base
 
+# Copy only requirements to cache them in docker layer
+WORKDIR /app
+
 ARG env
 
 ENV ENVIRONMENT=${env} \
@@ -19,25 +22,15 @@ ENV ENVIRONMENT=${env} \
 # System deps:
 RUN pip install poetry==$POETRY_VERSION
 
-
-# Build stage
-FROM base as builder
-
-# Copy only requirements to cache them in docker layer
-WORKDIR /app
 COPY README.md poetry.lock pyproject.toml /app/
 
 # Project initialization:
 RUN poetry install $(test "$ENVIRONMENT" == production && echo "--only main") --no-interaction --no-ansi
 
 # Creating folders, and files for a project:
-COPY . /app
+COPY ./book_service /app/book_service
 
+# RUN fastapi run location_service/main.py --port=9001
 
-# development stage
-FROM builder as book-service
-WORKDIR /app
-
-# proxy-headers is required for running behind a reverse proxy
-CMD ["fastapi", "dev", "book_service/main.py", "--proxy-headers", "--port=9000"]
-EXPOSE 9000
+# proxy-headers is required for running behind a reverse proxy --proxy-headers
+CMD ["fastapi", "run", "book_service/main.py", "--proxy-headers"]

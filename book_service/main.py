@@ -17,3 +17,7 @@ def read_item(item_id: int, q: Union[str, None] = None):
 @app.get("/health-check")
 def do_health_check():
     return {"book-service-status": "ok"}
+
+# if __name__ == "__main__":
+#     import uvicorn
+#     uvicorn.run(app, host="localhost", port=9000)
